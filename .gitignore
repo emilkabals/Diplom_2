@@ -1,0 +1,6 @@
+git statvenv/
+__pycache__/
+.cache/
+.idea/
+.coverage
+.pytest_cache

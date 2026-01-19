@@ -8,7 +8,7 @@ from data import Message
 
 @allure.feature('Создание пользователя')
 class TestCreateUser:
-    @allure.title('Успешное создание уникального пользователя')
+    @allure.title('Успешное создание нового пользователя')
     def test_create_user_success(self, cleanup_user):
         with allure.step('Сгенерировать валидные данные пользователя'):
             user_data = generate_user_data()
@@ -24,7 +24,7 @@ class TestCreateUser:
 
     @allure.title('Нельзя создать пользователя, который уже зарегистрирован')
     def test_create_user_existing_email(self, create_and_delete_user):
-        with allure.step('Получить данные существующего пользователя'):
+        with allure.step('Получить данные уже созданного пользователя'):
             user_data = create_and_delete_user
 
         with allure.step('Повторно отправить запрос на регистрацию'):

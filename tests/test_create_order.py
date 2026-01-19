@@ -13,7 +13,7 @@ class TestOrderCreation:
     def test_create_order_with_auth_and_ingredients_success(self, create_and_delete_user, get_available_ingredients):
         user_data = create_and_delete_user
 
-        with allure.step('Авторизоваться под пользователем'):
+        with allure.step('Залогиниться под пользователем'):
             access_token = get_user_access_token(user_data)
 
         with allure.step('Отправить POST-запрос на создание заказа с токеном'):
@@ -27,7 +27,7 @@ class TestOrderCreation:
     def test_create_order_without_ingredients_error_400(self, create_and_delete_user):
         user_data = create_and_delete_user
 
-        with allure.step('Авторизоваться под пользователем'):
+        with allure.step('Залогиниться под пользователем'):
             access_token = get_user_access_token(user_data)
 
         with allure.step('Отправить POST-запрос на создание заказа с пустым списком ингредиентов'):
@@ -56,5 +56,5 @@ class TestOrderCreation:
             response = OrderMethods.create_order(get_available_ingredients)
 
         with allure.step('Проверить, что статус-код 401 и ошибка "You should be authorised"'):
-            assert response.status_code == 401 # Ожидаем 401 по документации, но сервер возвращает 200, тест будет падать
+            assert response.status_code == 401 # Ожидаем 401 по документации, но сервер возвращает 200, тест не проходит
             assert response.json() == Message.UNAUTHORIZED
